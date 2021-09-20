@@ -1,0 +1,195 @@
+@import "../../../scss/anme/_anme-vars";
+@import "../../../scss/anme/_anme-mixins";
+
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  width: 249px;
+  height: 100vh;
+  position: relative;
+  transition: all 0.2s ease-out;
+
+  box-sizing: border-box;
+
+  &--closed {
+    transition: all 0.2s ease-out;
+    width: 50px;
+
+    .main-menu--item {
+      padding: 12.5px 10px;
+      justify-content: center;
+
+      svg {
+        margin: 0;
+      }
+    }
+
+    .accordion--item {
+      .accordion--title-open,
+      .accordion--title-box {
+        padding: 7.5px;
+        justify-content: center;
+        transition: all 0.3s ease-out;
+
+        svg {
+          margin: 0;
+        }
+      }
+
+      .accordion--title-chevron,
+      .accordion--title {
+        display: none;
+      }
+    }
+  }
+
+  &--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+    height: 22px;
+    padding: 14px 26px 16px 24px;
+    background-color: #4daac3;
+    &-closed {
+      padding: 15px;
+    }
+    &-btn {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      color: #e2e6f8;
+      cursor: pointer;
+      // margin-left: -5px;
+    }
+  }
+
+  &--logo {
+    background-image: url("../../../assets/img/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 36px;
+    width: 36px;
+    transition: all 0.2s ease-out;
+    position: relative;
+    color: red;
+
+    &:after {
+      content: "Code Help";
+      position: absolute;
+      top: 8px;
+      left: 45px;
+      font-family: "JetBrains Mono";
+      font-size: 16px;
+      color: #ffff;
+      white-space: nowrap;
+    }
+
+    &-none {
+      height: 0;
+      width: 0;
+      opacity: 0;
+      transition: all 0.2s ease;
+
+      &:after {
+        opacity: 0;
+      }
+    }
+
+    &-close {
+      //background-image: url("../../../assets/img/tabIcon.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      height: 36px;
+      width: 36px;
+    }
+  }
+
+  &--items-box {
+    padding: 10px 0;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 1;
+    box-shadow: 4px 8px 16px rgba(31, 116, 153, 0.15);
+
+    @include custom-scroll2;
+
+    &-title {
+      font-size: 13px;
+      color: $color--text;
+      text-decoration: none;
+    }
+
+    &-chapter {
+      text-transform: uppercase;
+      font-size: 10px;
+      color: $color--gray-gull;
+      padding: 16px 25px 10px 25px;
+      user-select: none;
+
+      &-hidden {
+        span {
+          display: none;
+        }
+        width: 16px;
+        height: 5px;
+        padding: 0;
+        background-color: #e2e5ec;
+        border-radius: 9px;
+        margin-left: 17px;
+        margin-top: 24.5px;
+        margin-bottom: 15.5px;
+      }
+    }
+
+    svg {
+      transition: all 0.3s ease-out;
+      font-size: 16px;
+    }
+  }
+
+  &--item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12.5px 24px;
+    cursor: pointer;
+    white-space: nowrap;
+
+    span {
+      white-space: nowrap;
+    }
+
+    &:hover {
+      background-color: $color--gray-gentel;
+    }
+  }
+
+  &--accordion {
+    .accordion {
+      &--item {
+        border: none;
+      }
+
+      &--title-box {
+        padding: 10px 25px;
+      }
+
+      &--content-item {
+        padding: 5px 35px;
+        cursor: pointer;
+        width: calc(100% - 70px);
+
+        &:hover {
+          background-color: $color--gray-gentel;
+        }
+      }
+    }
+  }
+
+  &__icon {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,63 @@
+@import "../../../scss/anme/anme-vars";
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 400;
+  border-radius: 15px;
+  padding: 0 8px;
+  height: 20px;
+
+  &--number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    border-radius: 15px;
+    height: 20px;
+  }
+  &--active, &--approved {
+    color: $color--green-haze;
+    background-color: $color--panache;
+  }
+
+  &--error {
+    color: #ffff;
+    background-color: #9AA0B9;
+  }
+
+  &--pause, &--reject, &--No, &--declined {
+    color: $color--froly;
+    background-color: #FCE2E8;
+  }
+
+  &--processing {
+    color: #9AA0B9;
+    background-color: #E2E6F8;
+  }
+
+  &--new, &--preApproved {
+    color: $color--primary;
+    background-color: #e2e6f8;
+  }
+
+  &--warning {
+    background-color: $color--sandy-beach;
+  }
+
+  &--number-active, &--Yes {
+    color: $color--green-haze;
+  }
+
+  &--no-bg {
+    background: none;
+    font-size: 13px;
+  }
+
+  &--disabled {
+    background-color: $color--border;
+    color: #777;
+  }
+}

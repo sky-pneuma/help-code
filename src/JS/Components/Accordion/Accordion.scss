@@ -1,0 +1,82 @@
+@import '../../../scss/anme/anme-vars';
+@import '../../../scss/anme/anme-mixins';
+
+.accordion {
+    &--item {
+        border: 1px solid $color--border;
+
+        &:not(:first-child) {
+            border-top: none;
+        }
+    }
+
+    &--title-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        padding: 10px 15px;
+        height: 20px;
+
+        &:hover {
+            background-color: $color--gray-gentel;
+        }
+    }
+
+    &--title {
+        font-size: 13px;
+        user-select: none;
+        color: $color--text;
+
+        &-chevron {
+            transition: all 0.2s ease-out;
+            min-height: 16px;
+            min-width: 16px;
+            cursor: pointer;
+            color: #9AA0B9;
+
+            &-open {
+                transition: all 0.2s ease-out;
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    &--content {
+        background: #fff;
+        transition: all 0.25s ease-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        overflow: hidden;
+        font-size: 13px;
+        opacity: 0;
+        max-height: 1000px;
+
+        &-is-open {
+            transition: all 0.25s ease-out;
+            padding: 10px 15px;
+            opacity: 1;
+        }
+
+        &-item {
+            padding: 7.5px 20px;
+            width: calc(100% - 40px);
+
+            a {
+                font-size: 13px;
+                font-weight: 400;
+                color: #1e1e2d;
+            }
+        }
+
+        @include custom-scroll;
+    }
+
+    &--menu-link {
+      text-decoration: none;
+      font-size: 13px;
+      color: #1E1E2D;
+    }
+}
