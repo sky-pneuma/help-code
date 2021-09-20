@@ -22,10 +22,12 @@ export const MENU_ITEMS = {
     },
     {
       title: 'Functions',
-      // icon: 'FiTag',
       icon: 'FiTool',
       className: 'color--froly',
-      children: [{ id: 'functions', link: '/functions/handle-object-change', title: 'handleObjectChange' }]
+      children: [
+        { id: 'functions', link: '/functions/handle-object-change', title: 'handleObjectChange' },
+        { id: 'getParams', link: '/functions/get-params', title: 'getParams' },
+      ]
     },
     {
       title: 'Chapter 3',

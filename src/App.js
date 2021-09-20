@@ -16,11 +16,14 @@ const App = () => {
       <main>
         <div className="page-container">
           <Switch>
-            {routes.map(route => <Route key={route.id}
-              path={route.path}
-              exact={route.exact}
-              component={route.component}
-            />)}
+            {
+              routes.map(route => {
+                let Component = route.component;
+                return <Route key={route.id} path={route.path} exact={route.exact}>
+                  <Component id={route.id}/>
+                </Route>
+              })
+            }
           </Switch>
         </div>
       </main>
