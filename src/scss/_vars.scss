@@ -1,0 +1,46 @@
+/* THEME COLORS*/
+$color--secondary: #f06d8d;
+$color--primary: #6b81dd;
+$color--dark: #1e1e2d;
+$color--light: #fff;
+$color--gray: #a6acb1;
+$color--gray--dark: #9aa0b9;
+$color--gray--light: #e2e5ec;
+$color--gray--lighter: #f7f8fa;
+$color--gray--gentle: #f2f2f8;
+$color--blue--light: #F7FAFC;
+$color--blue--dark: #0056b3;
+$color--warning: #ffedc8;
+$color--success: #78c58d;
+$color--error: #f06d8d;
+$color--error-bg: #fce2e8;
+$color--green-light: #e4f3e8;
+
+/* COLORS*/
+$green: #00B031;
+
+/*GRID*/
+$g_air: 15px; //grid air
+$wide: calc(100% + 30px); //WIDE-WIDTH
+$s_air: 25px; //section air
+$air: 15px;
+$container: 100%;
+$container-xxl: 1255px;
+$container-xl: 1115px;
+$mobile-more-height: 6em;
+
+/*FONTS*/
+
+$font-title: 'Open Sans';
+$font-text: 'Open Sans';
+$h1-fs: 32px;
+$h1-lh: 1.31;
+$h2-fs: 26px;
+$h2-lh: 1.62;
+$h3-fs: 24px;
+$h3-lh: auto;
+$h4-fs: 22px;
+$h4-lh: 1.18;
+
+$txt: 14px;
+$txt--lh: (20 / 14);

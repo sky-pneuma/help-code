@@ -1,0 +1,95 @@
+/* COLORS*/
+$color--primary: #6B81DD;
+$color--white: #FFFFFF;
+$color--title: #94BAD7;
+$color--bg: #F4F6FF;
+$color--text: #1e1e2d;
+
+$color--link: #2976b0;
+$color--link-cat: #00345c;
+$color--link-hover: #ce860b;
+$color--zero: rgba(0, 0, 0, 0);
+$color--warning: #afaa00;
+$color--disabled: #afacad;
+$color--lavr: #e9f3f5;
+$color--creme: #fdfdf6;
+$color--success: #007a1d;
+$color--green-dark: #00695C;
+$color--green-light: #e8f5ea;
+$color--error: #8d0a00;
+$color--light-red: #cf0e00;
+$color--warning: #FF8A65;
+$color--warn: #ffb74d;
+$color--warn-bright: #fe9627;
+$color--pause: #999999;
+$color--sky: #2196f3;
+$color--sky-deep: #006ff3;
+$color--sky-light: #ecf8ff;
+$color--sky-gentle: #ecf8ff;
+$color--border: #E2E5EC;
+$color--border-table: #f4f7f9;
+$color--purple: #3949ab;
+$color--sea: #00bcd4;
+$color--light-pinky: #f9f2f4;
+$color--wisp-pinky: #fce2e8;
+$color--eggplant: #6a1ba7;
+$color--brown: #6D4C41;
+
+$color--gray: #6d6d6d;
+$color--gray-dark: #333333;
+$color--gray-light: #e9e9ed;
+$color--slate: #78909C;
+$color--gray-gentel: #f8f8fa;
+$color--gray-athens: #EBEFF2;
+$color--gray-gull: #9aa0b9;
+$color--athens-gray: #E2E5EC;
+$color--black-squeeze: #F7FAFC;
+$color--green-haze: #00B031;
+
+$color--creame: #fff5ee;
+$color--sandy-beach: #ffedc8;
+$color--light-beach: #fff6e2;
+$color--sea-buckthorn: #F59A2F;
+$color--pastel-pink: #FFD9E2;
+$color--froly: #F06D8D;
+$color--panache: #E4F3E8;
+$color--de-york: #78C58D;
+$color--whisper: #F2F2F8;
+$color--mischka: #cccfdc;
+$color--cherokee: #FBDD9E;
+$color--yellow: #ffff00;
+
+/*GRID*/
+$gAir: 15px !default; //grid air
+$wide: calc(100% + 30px); //WIDE-WIDTH
+$s_air: 25px; //section air
+$air: 15px;
+$container: 1480px;
+$container-xxl: 1255px;
+$container-xl: 1115px;
+$mobile-more-height: 6em;
+$border: 1px solid $color--border;
+
+/*FONTS*/
+
+$font-title: 'Arial';
+$font-text: 'Open Sans';
+$h1-fs: 32px;
+$h1-lh: 1.31;
+$h2-fs: 26px;
+$h2-lh: 1.62;
+$h3-fs: 24px;
+$h3-lh: auto;
+$h4-fs: 22px;
+$h4-lh: 1.18;
+
+$txt: 14px;
+$txt--lh: (20 / 14);
+
+/*Z-INDEX*/
+
+$tooltip-z-index: 10;
+
+
+/*OTHER*/
+$border: 1px solid #E2E5EC;

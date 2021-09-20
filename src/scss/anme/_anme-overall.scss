@@ -1,0 +1,38 @@
+.w100 {
+  width: 100% !important;
+}
+
+.w75 {
+  width: 75%;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.w33 {
+  width: 33.3333%;
+}
+
+.w25 {
+  width: 25%;
+}
+
+.min-h500 {
+  min-height: 500px;
+}
+
+.disabled {
+  pointer-events: none;
+  user-select: none;
+  cursor: default;
+  opacity: .5;
+}
+
+.noBackground {
+  background: none;
+}
+
+.no-shadow {
+  box-shadow: none;
+}

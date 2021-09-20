@@ -1,0 +1,81 @@
+.scrollable-table-box {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  font-size: 12px;
+}
+
+.table {
+  display: table;
+  margin: 0;
+  font-size: 12px;
+
+  &--inline {
+    display: inline-table;
+  }
+
+  /* &:last-child {
+     border-bottom: $border;
+   }*/
+}
+
+.table__row {
+  width: 100%;
+  display: table-row;
+  &:not(:first-child) {
+    .table__cell {
+      border-top: $border;
+      &_min-height {
+        min-height: 15px;
+      }
+    }
+  }
+}
+
+.table__cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 14px 15px;
+  background-color: #ffff;
+  font-size: 13px;
+  font-weight: 300;
+
+  &:first-child{
+    padding-left: 15px;
+  }
+  &:last-child{
+    padding-right: 15px;
+    text-align: right;
+  }
+  &--th {
+    font-weight: bold;
+    font-size: 12px;
+  }
+}
+
+.table--bordered .table__cell {
+  border-left: $border;
+  &:last-child {
+    border-right: $border;
+  }
+}
+
+.thead-decorate {
+  .table__row:first-child {
+    background-color: #EBEFF2;
+    height: 42px;
+  }
+}
+
+.cell-align_top {
+  .listItems-table__cell {
+    vertical-align: top;
+    @extend .ptb6;
+  }
+}
+
+.cell-align_middle {
+  .listItems-table__cell {
+    vertical-align: middle;
+  }
+}

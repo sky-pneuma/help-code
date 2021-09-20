@@ -1,0 +1,76 @@
+@import "./fonts";
+@import "./anme/styles.scss";
+
+main {
+  background-color: #f7fafc;
+  width: 100%;
+  overflow: auto;
+}
+
+header {
+  background-color: #ffff;
+  width: 100%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+
+.page-container {
+  padding: 24px 32px;
+  height: calc(100vh - 53px);
+  overflow: auto;
+  box-sizing: border-box;
+
+  @include custom-scroll2;
+}
+
+input {
+  font-family: inherit;
+  margin: 0;
+  outline: none;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 0;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+  &:disabled {
+    pointer-events: none;
+    filter: grayscale(0.7);
+    opacity: 0.5;
+  }
+}
+
+.main {
+  &__wrap {
+    display: flex;
+  }
+}
+
+.svg-icon {
+  display: inline-flex;
+  align-items: center;
+  height: 1em;
+  width: 1em;
+}
+
+.btn--lighter:hover {
+  text-shadow: 0 0 4px;
+}
+
+

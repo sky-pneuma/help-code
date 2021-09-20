@@ -1,0 +1,111 @@
+@import "anme-vars";
+// Container
+.container {
+  box-sizing: border-box;
+
+  &.box {
+    padding-left: ($gAir*2);
+    padding-right: ($gAir*2);
+  }
+
+  &.tiles {
+    &.box {
+      padding-top: $gAir;
+      padding-bottom: $gAir;
+    }
+
+    > .row {
+      > .col, > [class*="col-"] {
+        padding-top: $gAir;
+        padding-bottom: $gAir;
+      }
+    }
+
+  }
+
+  .col.tile, [class*="col-"].tile {
+    margin: 0;
+    padding-top: $gAir;
+    padding-bottom: $gAir;
+  }
+
+  &.sm {
+    padding-left: $gAir;
+    padding-right: $gAir;
+
+    .row {
+      margin-left: -($gAir/2);
+      margin-right: -($gAir/2);
+
+      .col, [class*="col-"] {
+        padding-left: ($gAir/2);
+        padding-right: ($gAir/2);
+      }
+    }
+
+    &.tiles {
+      padding-top: ($gAir/2);
+      padding-bottom: ($gAir/2);
+
+      > .row {
+        > .col, > [class*="col-"] {
+          padding-top: ($gAir/2);
+          padding-bottom: ($gAir/2);
+        }
+      }
+
+    }
+
+    .col.tile, [class*="col-"].tile {
+      padding-top: ($gAir/2);
+      padding-bottom: ($gAir/2);
+    }
+  }
+
+  &.no-padding, &.zero {
+    padding: 0;
+  }
+
+  .col.no-tile, .no-tile {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+//Columns
+.col-5pct, .col-20items {
+  flex-basis: 5%;
+  max-width: 5%;
+}
+
+.col-10pct, .col-10items {
+  flex-basis: 10%;
+  max-width: 10%;
+}
+
+.col-20pct, .col-5items {
+  flex-basis: 20%;
+  max-width: 20%;
+}
+
+.col-8items {
+  flex-basis: 12.5%;
+  max-width: 12.5%;
+}
+
+.display {
+  height: 100vh;
+  width: 100vw;
+}
+
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+
+
+
