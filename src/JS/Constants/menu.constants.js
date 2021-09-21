@@ -26,7 +26,8 @@ export const MENU_ITEMS = {
       className: 'color--froly',
       children: [
         { id: 'functions', link: '/functions/handle-object-change', title: 'handleObjectChange' },
-        { id: 'getParams', link: '/functions/get-params', title: 'getParams' },
+        { id: 'compare', link: '/functions/compare', title: 'compare' },
+        { id: 'getQueryParams', link: '/functions/get-query-params', title: 'getQueryParams' },
       ]
     },
     {

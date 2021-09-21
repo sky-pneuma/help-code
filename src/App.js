@@ -20,7 +20,7 @@ const App = () => {
               routes.map(route => {
                 let Component = route.component;
                 return <Route key={route.id} path={route.path} exact={route.exact}>
-                  <Component id={route.id}/>
+                  <Component id={route.id} />
                 </Route>
               })
             }
