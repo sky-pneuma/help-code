@@ -28,6 +28,8 @@ export const MENU_ITEMS = {
         { id: 'functions', link: '/functions/handle-object-change', title: 'handleObjectChange' },
         { id: 'compare', link: '/functions/compare', title: 'compare' },
         { id: 'getQueryParams', link: '/functions/get-query-params', title: 'getQueryParams' },
+        { id: 'clone', link: '/functions/clone', title: 'clone' },
+        { id: 'validation', link: '/functions/validation', title: 'validation' },
       ]
     },
     {
