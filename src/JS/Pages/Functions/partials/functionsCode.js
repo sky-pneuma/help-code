@@ -196,5 +196,179 @@ FUNCTION:
 
   EXAMPLE PROPS:
    constructor:
-  `}</code></pre>
+  `}</code></pre>,
+
+  checkEmptyFields: <pre>
+    <code>
+      {
+        `
+IN COMPONENT:
+
+getUnfilledFieldTabName(res, initialData)
+
+
+FUNCTION:
+
+export const getUnfilledFieldTabName = (data, initialData) => {
+  const initialDataKeys = Object.keys(initialData);
+      
+  return initialDataKeys.reduce((acc, item, index) => {
+    const checkKeys = Object.keys(initialData[item]).reduce((acc2, el) => acc2 && !!data[el], true);
+      
+    if (acc.next) {
+      return !checkKeys ? { next: false, result: item } : { next: true, result: initialDataKeys[index + 1] || null };
+    };
+      
+    return acc;
+  }, { next: true, result: initialDataKeys[0] }).result;
+}
+
+
+EXAMPLE PROPS:
+
+res: {
+  "firstName": "John",
+  "language": "english",
+  "residenceOwnershipType": "rent",
+  "lastName": "Silver",
+  "licenseNumber": "23131241",
+  "zip": "222222",
+  "mobilePhone": "21412412",
+  "driverLicenseState": "VA",
+  "homePhone": "34234234",
+  "ssn": "23523523523253",
+  "streetAddress": "Main street 22",
+  "email": "silverhand@cyber.com",
+  "confirmSsn": "23523523523253",
+  "timeAtAddress": 22,
+  "birthdate": "16.11.88",
+  "phoneDisclosure": "agree",
+  "incomeSource": "jobIncome",
+  "jobTitle": "Job title",
+  "getPaid": "every2weeks",
+  "currentEmployer": "Young @ Heart",
+  "startDate": "05.05.2018",
+  "lastPayDate": "05.05.2019",
+  "employerPhone": "(307) 555-0133",
+  "grossMonthlyIncome": 1000,
+  "nextPayDate": "18.01.2020",
+  "requestedAmount": "",
+  "productName": ""
+},
+
+initialData: {
+  personalInfo: {
+    firstName: '',
+    language: 'english',
+    residenceOwnershipType: 'rent',
+    lastName: '',
+    licenseNumber: '',
+    zip: '',
+    mobilePhone: '',
+    driverLicenseState: '',
+    homePhone: '',
+    ssn: '',
+    streetAddress: '',
+    email: '',
+    confirmSsn: '',
+    timeAtAddress: 1,
+    birthdate: '',
+    phoneDisclosure: 'agree',
+  },
+  employerInfo: {
+    incomeSource: '',
+    jobTitle: '',
+    getPaid: '',
+    currentEmployer: '',
+    startDate: '',
+    lastPayDate: '',
+    employerPhone: '',
+    grossMonthlyIncome: '',
+    nextPayDate: '',
+  },
+  sendToCustomer: {}
+}
+        `
+      }
+    </code>
+  </pre>,
+
+calculateTableCell: <pre>
+  <code>
+    {
+      `
+IN COMPONENT:
+
+<Status
+  type={item?.status.type}
+  value={item?.status.value}
+  status={item?.status.status}
+  active={calculateTableCell()?.active}
+  pause={calculateTableCell()?.pause}
+/>
+
+FUNCTION:
+
+const calculateTableCell = () => {
+  return item?.rows?.reduce(
+    // sum rows
+    (acc, row) => {
+      const result = row.cols.reduce(
+        // sum cols
+        (accum, col) => ({
+          active: accum.active + (col.status === 'active' ? 1 : 0),
+          pause: accum.pause + (col.status === 'pause' ? 1 : 0),
+        }),
+        { active: 0, pause: 0 },
+      );
+    
+      return {
+        // rows result + cols result
+        active: acc.active + result.active,
+        pause: acc.pause + result.pause,
+      };
+    },
+    { active: 0, pause: 0 },
+  );
+};
+
+
+EXAMPLE:
+https://i.imgur.com/TaScp0h.png
+      `
+    }
+  </code>
+</pre>,
+
+getClosedAccordionBodyHeight: <pre>
+  <code>
+    {
+      `
+IN COMPONENT:
+
+const AccordionItem = ({ item, onClick, isOpen, className, children, noChevron }) => {
+const [maxHeight, setMaxHeight] = useState(0);
+const ref = useRef(null);
+
+const getItemsHeight = () => {
+  let itemHeight = 0;
+  ref.current.childNodes.forEach(el => {
+    itemHeight += el.offsetHeight;
+  });
+    
+  return itemHeight + 20;
+};
+
+useEffect(() => {
+  setMaxHeight(isOpen ? getItemsHeight() : 0);
+}, [isOpen]);
+
+return <div ref={ref} style={{ maxHeight }} className={cn({ 'accordion--content-is-open': isOpen })}>
+  Content
+</div>
+}
+      `
+    }
+  </code>
+</pre>
 }

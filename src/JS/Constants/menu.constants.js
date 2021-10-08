@@ -7,10 +7,10 @@ export const MENU_ITEMS = {
       link: '/'
     },
     {
-      title: 'Test',
-      icon: 'FiUser',
-      className: 'color--primary main-menu__icon',
-      link: '/test',
+      title: 'Linux Alias',
+      icon: 'FiEdit',
+      className: 'color--gray-gull',
+      link: '/alias'
     },
   ],
   branch: [
@@ -30,6 +30,9 @@ export const MENU_ITEMS = {
         { id: 'getQueryParams', link: '/functions/get-query-params', title: 'getQueryParams' },
         { id: 'clone', link: '/functions/clone', title: 'clone' },
         { id: 'validation', link: '/functions/validation', title: 'validation' },
+        { id: 'checkEmptyFields', link: '/functions/check-empty-fields', title: 'checkEmptyFields' },
+        { id: 'calculateTableCell', link: '/functions/calculate-table-cell', title: 'calculateTableCell' },
+        { id: 'getClosedAccordionBodyHeight', link: '/functions/get-closed-accordion-body-height', title: 'getClosedAccordionBodyHeight' },
       ]
     },
     {
@@ -41,27 +44,22 @@ export const MENU_ITEMS = {
     {
       title: 'Chapter 4',
       icon: 'FiSliders',
-      className: 'color--primary'
-    }
+      className: 'color--primary',
+      children: []
+    },
   ],
   branch2: [
-    {
-      title: 'Chapter',
-      icon: 'FiShoppingBag',
-      className: 'color--froly',
-      link: '/merchants/',
-    },
     {
       title: 'Chapter 2',
       icon: 'FiBriefcase',
       className: 'color--green-haze',
-      link: '/lenders/',
+      link: '/',
     },
     {
       title: 'Chapter 3',
       icon: 'FiShuffle',
       className: 'color--primary',
-      link: '/ping-tree/'
+      link: '/'
     }
   ],
   branch3: [
@@ -69,7 +67,7 @@ export const MENU_ITEMS = {
       title: 'Chapter',
       icon: 'FiPieChart',
       className: 'color--gray-gull',
-      link: '/reports/'
+      link: '/'
     },
     {
       title: 'Chapter 2',
