@@ -33,6 +33,7 @@ export const MENU_ITEMS = {
         { id: 'checkEmptyFields', link: '/functions/check-empty-fields', title: 'checkEmptyFields' },
         { id: 'calculateTableCell', link: '/functions/calculate-table-cell', title: 'calculateTableCell' },
         { id: 'getClosedAccordionBodyHeight', link: '/functions/get-closed-accordion-body-height', title: 'getClosedAccordionBodyHeight' },
+        { id: 'validationUni', link: '/functions/validationUni', title: 'validationUni' },
       ]
     },
     {

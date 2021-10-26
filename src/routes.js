@@ -12,5 +12,6 @@ export const routes = [
   { id: 'checkEmptyFields', path: '/functions/check-empty-fields', component: RenderFunctionsCode },
   { id: 'calculateTableCell', path: '/functions/calculate-table-cell', component: RenderFunctionsCode },
   { id: 'getClosedAccordionBodyHeight', path: '/functions/get-closed-accordion-body-height', component: RenderFunctionsCode },
+  { id: 'validationUni', path: '/functions/validationUni', component: RenderFunctionsCode },
   { id: 'linuxAlias', path: '/alias', exact: true, component: Alias },
 ];

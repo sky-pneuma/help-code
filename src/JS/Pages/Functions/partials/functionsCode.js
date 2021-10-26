@@ -370,5 +370,273 @@ return <div ref={ref} style={{ maxHeight }} className={cn({ 'accordion--content-
       `
     }
   </code>
+</pre>,
+validationUni:
+<pre>
+  <code>
+    {
+      `
+      FUNCTION:
+
+      export const checkField = (value, key, values) => {
+        let error = '';
+      
+        if (!value) return error = 'Required field';
+        else if (key === 'email' && !CheckEmail(value)) return error = 'Invalid email';
+        else if (key === 'website' && !CheckWebsite(value)) return error = 'Invalid website';
+        else if ((
+          key === 'mobileNumber'
+          || key === 'mobilePhone'
+          || key === 'phoneNumber'
+          || key === 'employerPhone'
+        ) && !CheckPhone(value)) return error = 'Invalid phone number';
+        else if (key === 'confirmSsn') {
+          values?.ssn != value ? error = \`SSN doesn't match\` : ''
+        }
+        return error;
+      }
+      
+      export const validate = (values, constructor) => Object.keys(values).every(key => {
+        const field = constructor.find(el => el.key === key);
+        return field?.required ? !checkField(values[key], key, values) : true
+      });
+
+      IN COMPONENT:
+
+      const [isTouched, setIsTouched] = useState(false);
+
+      send: () => {
+        setIsTouched(true);
+        validate(data, fields) && restApi
+          .send({
+            path: \`applications/'$'{id}'\`,
+            method: 'PATCH',
+            body: ExportTransformer('applicationSteps', data),
+            successMess: 'Success'
+          })
+          .then(res => {
+            if (res.ok) {
+              setUncompletedTabName('');
+              setActiveTab('employerInfo');
+            }
+            else toast.error('Something went wrong...');
+          });
+      },
+
+
+      {fields?.map(field => {
+        return (
+          <FormItem
+            values={data ?? {}}
+            key={field.key}
+            field={{
+              ...field,
+              value: data?.[field.key],
+              error: field.required ? isTouched && checkField(data[field.key], field.key, data) : ''
+            }}
+            onChange={(e, key) => handle.change(e, key)}
+          />
+        );
+      })}
+
+
+      EXAMPLE PROPS:
+
+      fields: [
+        {
+          key: 'firstName',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'First Name',
+          placeholder: 'First Name',
+          required: true,
+        },
+        {
+          key: 'language',
+          type: 'radioAsButton',
+          className: 'application--item col-12 col-sm-6 col-lg-4',
+          label: 'Language',
+          leftBtn: {
+            key: 'english',
+            label: 'English',
+          },
+          rightBtn: {
+            key: 'spanish',
+            label: 'Spanish',
+          },
+        },
+        {
+          key: 'residenceOwnershipType',
+          type: 'radioAsButton',
+          className: 'application--item col-12 col-sm-6 col-lg-4',
+          label: 'Residence ownership type',
+          leftBtn: {
+            key: 'rent',
+            label: 'Rent',
+          },
+          rightBtn: {
+            key: 'own',
+            label: 'Own',
+          },
+        },
+        {
+          key: 'lastName',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'Last Name',
+          placeholder: 'Last Name',
+          required: true,
+        },
+        {
+          key: 'licenseNumber',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'License Number',
+          placeholder: 'X1122333',
+          required: true,
+        },
+        {
+          key: 'zip',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'ZIP',
+          placeholder: 'ZIP',
+          required: true,
+          mask: '99999',
+        },
+        {
+          key: 'mobilePhone',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'Mobile Phone',
+          icon: <Smartphone />,
+          placeholder: 'Mobile Phone',
+          required: true,
+          mask: '999 999 9999',
+        },
+        {
+          key: 'driverLicenseState',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'Driver License State',
+          placeholder: 'State',
+          required: true,
+        },
+        {
+          key: 'checkZip',
+          type: 'checkZip',
+          className: 'application--item application__personal-info--alert col-12 col-md-6 col-lg-4',
+        },
+    
+        {
+          key: 'homePhone',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'Home(Alternate) Phone (Optional)',
+          icon: <Phone />,
+          placeholder: 'Alternate Phone',
+          mask: '999 999 9999',
+        },
+        {
+          key: 'ssn',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'Social Security Number or ITIN',
+          placeholder: '123 45 6789',
+          required: true,
+        },
+        {
+          key: 'streetAddress',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'Street Address',
+          placeholder: 'Street Address',
+          required: true,
+        },
+        {
+          key: 'email',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'Email',
+          placeholder: 'example@domain.com',
+          required: true,
+        },
+        {
+          key: 'confirmSsn',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'Confirm Social Security Number or ITIN',
+          placeholder: '123 45 6789',
+          required: true,
+        },
+        {
+          key: 'timeAtAddress',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          isNumeric: true,
+          label: 'Time at the address (months)',
+          min: 1,
+          required: true,
+        },
+        {
+          key: 'birthdate',
+          type: 'input',
+          className: 'application--item col-12 col-md-6 col-lg-4',
+          label: 'Birthdate (mm.dd.yyyy)',
+          required: true,
+        },
+        {
+          key: 'emptySpace',
+          type: 'emptySpace',
+          className: 'applications__empty-space col-lg-8',
+        },
+        {
+          key: 'phoneDisclosure',
+          type: 'radioAsButton',
+          className: 'application--item application--item-phone col-12 col-sm-6 col-lg-4',
+          label: 'Phone Disclosure',
+          leftBtn: {
+            key: 'agree',
+            label: 'Agree',
+          },
+          rightBtn: {
+            key: 'disagree',
+            label: 'Disagree',
+          },
+        }
+      ];
+
+      data: {
+        "firstName": "John",
+        "language": "english",
+        "residenceOwnershipType": "rent",
+        "lastName": "Silver",
+        "licenseNumber": "23131241",
+        "zip": "222222",
+        "mobilePhone": "21412412",
+        "driverLicenseState": "VA",
+        "homePhone": "34234234",
+        "ssn": "23523523523253",
+        "streetAddress": "Main street 22",
+        "email": "silverhand@cyber.com",
+        "confirmSsn": "23523523523253",
+        "timeAtAddress": 22,
+        "birthdate": "16.11.88",
+        "phoneDisclosure": "agree",
+        "incomeSource": "jobIncome",
+        "jobTitle": "Job title",
+        "getPaid": "every2weeks",
+        "currentEmployer": "Young @ Heart",
+        "startDate": "05.05.2018",
+        "lastPayDate": "05.05.2019",
+        "employerPhone": "(307) 555-0133",
+        "grossMonthlyIncome": 1000,
+        "nextPayDate": "18.01.2020",
+        "requestedAmount": "",
+        "productName": ""
+      }
+      `
+    }
+  </code>
 </pre>
 }
