@@ -891,5 +891,28 @@ formFieldsByOrder: <pre>
 
     `}
   </code>
+</pre>,
+
+addKeyPressEvent: <pre>
+  <code>
+    {`
+    export const KEY_CODE = Object.freeze({ ENTER: 13, ESC: 27 });
+    
+     const handle = {
+      confirm: (e) => {
+        e.preventDefault();
+        onConfirm();
+      },
+      pressEnter: (event) => {
+        if (event.keyCode === KEY_CODE.ENTER && !event.repeat) handle.confirm(event);
+      },
+    };
+    
+     useEffect(() => {
+      document.addEventListener('keydown', handle.pressEnter);
+      return () => document.removeEventListener('keydown', handle.pressEnter);
+    }, []);
+    `}
+  </code>
 </pre>
 }

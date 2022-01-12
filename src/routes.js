@@ -20,5 +20,6 @@ export const routes = [
   { id: 'getStoreQueryObj', path: '/functions/getStoreQueryObj', component: RenderFunctionsCode },
   { id: 'getUrl', path: '/functions/getUrl', component: RenderFunctionsCode },
   { id: 'useOutsideToggle', path: '/functions/useOutsideToggle', component: RenderFunctionsCode },
+  { id: 'addKeyPressEvent', path: '/addKeyPressEvent', exact: true, component: Alias },
   { id: 'linuxAlias', path: '/alias', exact: true, component: Alias },
 ];

@@ -41,6 +41,7 @@ export const MENU_ITEMS = {
         { id: 'getStoreQueryObj', link: '/functions/getStoreQueryObj', title: 'getStoreQueryObj' },
         { id: 'getUrl', link: '/functions/getUrl', title: 'getUrl' },
         { id: 'useOutsideToggle', link: '/functions/useOutsideToggle', title: 'useOutsideToggle' },
+        { id: 'addKeyPressEvent', link: '/functions/addKeyPressEvent', title: 'addKeyPressEvent' },
       ]
     },
     {
