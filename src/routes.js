@@ -1,9 +1,13 @@
+import { Redirect } from "react-router-dom";
+
 import MainPage from "./JS/Pages/Main/MainPage";
 import RenderFunctionsCode from './JS/Pages/Functions/RenderFunctionsCode';
 import Alias from './JS/Pages/Alias/Alias';
+import PageNotFound from './JS/Pages/PageNotFound/PageNotFound';
 
 export const routes = [
   { id: 'home', path: '/', exact: true, component: MainPage },
+  { id: 'pageNotFound', path: '/page-not-found', exact: true, component: PageNotFound },
   { id: 'handleObjectChange', path: '/functions/handle-object-change', component: RenderFunctionsCode },
   { id: 'compare', path: '/functions/compare', component: RenderFunctionsCode },
   { id: 'getQueryParams', path: '/functions/get-query-params', component: RenderFunctionsCode },
@@ -20,6 +24,9 @@ export const routes = [
   { id: 'getStoreQueryObj', path: '/functions/getStoreQueryObj', component: RenderFunctionsCode },
   { id: 'getUrl', path: '/functions/getUrl', component: RenderFunctionsCode },
   { id: 'useOutsideToggle', path: '/functions/useOutsideToggle', component: RenderFunctionsCode },
-  { id: 'addKeyPressEvent', path: '/addKeyPressEvent', exact: true, component: Alias },
+  { id: 'addKeyPressEvent', path: '/functions/addKeyPressEvent', exact: true, component: RenderFunctionsCode },
+  { id: 'redirect', path: '/other/page-not-found', exact: true, component: RenderFunctionsCode },
+
   { id: 'linuxAlias', path: '/alias', exact: true, component: Alias },
+  { path: '*', component: () => <Redirect to="/page-not-found" /> }
 ];

@@ -914,5 +914,19 @@ addKeyPressEvent: <pre>
     }, []);
     `}
   </code>
+</pre>,
+
+redirect: <pre>
+  <code>
+    {`
+    import { Redirect } from "react-router-dom";
+    import PageNotFound from './JS/Pages/PageNotFound/PageNotFound';
+    
+    export const routes = [
+      { id: 'pageNotFound', path: '/page-not-found', exact: true, component: PageNotFound },
+      {path: '*', component: () => <Redirect to="/page-not-found" /> }
+    ];
+    `}
+  </code>
 </pre>
 }

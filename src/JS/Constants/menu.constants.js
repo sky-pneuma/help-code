@@ -51,10 +51,12 @@ export const MENU_ITEMS = {
       children: []
     },
     {
-      title: 'Chapter 4',
+      title: 'Other',
       icon: 'FiSliders',
       className: 'color--primary',
-      children: []
+      children: [
+        { id: 'redirect', link: '/other/page-not-found', title: 'redirect' },
+      ]
     },
   ],
   branch2: [
