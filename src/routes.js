@@ -13,5 +13,12 @@ export const routes = [
   { id: 'calculateTableCell', path: '/functions/calculate-table-cell', component: RenderFunctionsCode },
   { id: 'getClosedAccordionBodyHeight', path: '/functions/get-closed-accordion-body-height', component: RenderFunctionsCode },
   { id: 'validationUni', path: '/functions/validationUni', component: RenderFunctionsCode },
+  { id: 'omitKeys', path: '/functions/omitKeys', component: RenderFunctionsCode },
+  { id: 'getQueryString', path: '/functions/getQueryString', component: RenderFunctionsCode },
+  { id: 'getQueryParamsFromUrl', path: '/functions/getQueryParamsFromUrl', component: RenderFunctionsCode },
+  { id: 'getQueryObj', path: '/functions/getQueryObj', component: RenderFunctionsCode },
+  { id: 'getStoreQueryObj', path: '/functions/getStoreQueryObj', component: RenderFunctionsCode },
+  { id: 'getUrl', path: '/functions/getUrl', component: RenderFunctionsCode },
+  { id: 'useOutsideToggle', path: '/functions/useOutsideToggle', component: RenderFunctionsCode },
   { id: 'linuxAlias', path: '/alias', exact: true, component: Alias },
 ];

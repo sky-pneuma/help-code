@@ -38,7 +38,8 @@ export const code = {
       </div>
   </div>, */
   handleObjectChange: <pre>
-    <code>{`IN COMPONENT:
+    <code>{`
+  IN COMPONENT:
 
   const [data, setData] = useState(items);
 
@@ -49,8 +50,28 @@ export const code = {
       onChange(data);
   };
 
+  <div className={cn('accordion', className)}>
+      {items?.map((item, index) => {
+        const Icon = Icons[item.icon];
+        return item.link ? (
+          <NavLink key={index} to={item.link} className={cn('main-menu--item main-menu--items-box-title')}>
+            {item?.icon && <Icon className={cn('mr5', item?.className)} />}
+            <span className={cn({ hidden: !isOpen && !isMenuHovered })}>{item?.title || 'Link'}</span>
+          </NavLink>
+        ) : (
+          <AccordionItem
+            key={index}
+            className={itemClassName}
+            item={item}
+            isOpen={item.isOpen}
+            onClick={(e) => handleArrayChange(e, index, 'isOpen')}
+          />
+        );
+      })}
+    </div>
 
-FUNCTION:
+
+  FUNCTION:
 
   export const handleObjectChange = (updateObject, updateFunction) => (data, prop = '', isNumber) => {
     let value;
@@ -73,7 +94,8 @@ FUNCTION:
     </code>
   </pre>,
 
-  compare: <pre><code>{`Compare 2 arrays or objects.
+  compare: <pre><code>{`
+DESCRIPTION: Compare 2 arrays or objects.
 
 IN COMPONENT:
 
@@ -90,7 +112,7 @@ FUNCTION:
   </pre>,
 
   getQueryParams: <pre><code>{`
-Add query to url.
+DESCRIPTION: Add query to url.
 
 IN COMPONENT:
 
@@ -120,13 +142,12 @@ FUNCTION:
 		
   export const definePathWithQuery = (scheme, data) => { //scheme-string, data-array
     let queryObj = data.reduce((acc, el) => ({ ...acc, [el.key === 'state' ? 'address_state' : el.key]: el.item.value || '' }), {});
-    if (scheme === "consumers") return \`customers\${getQueryParams(queryObj)}\`;
-    else return \`\${scheme}\${getQueryParams(queryObj)}\`
+    return \`\${scheme}\${getQueryParams(queryObj)}\`
   }
 	`}</code></pre>,
 
   clone: <pre><code>{`
-Deep clone array or object.
+DESCRIPTION: Deep clone array or object.
 
 IN COMPONENT:
 
@@ -168,6 +189,8 @@ FUNCTION:
     return rule.test(value.toLowerCase());
   };
 
+  const checkDate = /^(0?[1-9]|1[012])[\\.\\-](0?[1-9]|[12][0-9]|3[01])[\\.\\-]\\d{4}$/; //mm.dd.yyyy
+
   const ValidateFormsByConstructor = (constructor, data) => {
     let isValid = true;
     function checkField(field) {
@@ -198,10 +221,281 @@ FUNCTION:
    constructor:
   `}</code></pre>,
 
+  validationUni:
+  <pre>
+    <code>
+      {
+        `
+        FUNCTION:
+       
+        export const checkField = (value, key, values) => {
+          let error = '';
+        
+          if (!value) return error = 'Required field';
+          else if (key === 'email' && !CheckEmail(value)) return error = 'Invalid email';
+          else if (key === 'website' && !CheckWebsite(value)) return error = 'Invalid website';
+          else if ((
+            key === 'mobileNumber'
+            || key === 'mobilePhone'
+            || key === 'phoneNumber'
+            || key === 'employerPhone'
+          ) && !CheckPhone(value)) return error = 'Invalid phone number';
+          else if (key === 'confirmSsn') {
+            values?.ssn != value ? error = \`SSN doesn't match\` : ''
+          }
+          return error;
+        }
+        
+        export const validate = (values, constructor) => Object.keys(values).every(key => {
+          const field = constructor.find(el => el.key === key);
+          return field?.required ? !checkField(values[key], key, values) : true
+        });
+  
+        IN COMPONENT:
+  
+        const [isTouched, setIsTouched] = useState(false);
+  
+        send: () => {
+          setIsTouched(true);
+          validate(data, fields) && restApi
+            .send({
+              path: \`applications/'$'{id}'\`,
+              method: 'PATCH',
+              body: ExportTransformer('applicationSteps', data),
+              successMess: 'Success'
+            })
+            .then(res => {
+              if (res.ok) {
+                setUncompletedTabName('');
+                setActiveTab('employerInfo');
+              }
+              else toast.error('Something went wrong...');
+            });
+        },
+  
+  
+        {fields?.map(field => {
+          return (
+            <FormItem
+              values={data ?? {}}
+              key={field.key}
+              field={{
+                ...field,
+                value: data?.[field.key],
+                error: field.required ? isTouched && checkField(data[field.key], field.key, data) : ''
+              }}
+              onChange={(e, key) => handle.change(e, key)}
+            />
+          );
+        })}
+  
+  
+        EXAMPLE PROPS:
+  
+        fields: [
+          {
+            key: 'firstName',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'First Name',
+            placeholder: 'First Name',
+            required: true,
+          },
+          {
+            key: 'language',
+            type: 'radioAsButton',
+            className: 'application--item col-12 col-sm-6 col-lg-4',
+            label: 'Language',
+            leftBtn: {
+              key: 'english',
+              label: 'English',
+            },
+            rightBtn: {
+              key: 'spanish',
+              label: 'Spanish',
+            },
+          },
+          {
+            key: 'residenceOwnershipType',
+            type: 'radioAsButton',
+            className: 'application--item col-12 col-sm-6 col-lg-4',
+            label: 'Residence ownership type',
+            leftBtn: {
+              key: 'rent',
+              label: 'Rent',
+            },
+            rightBtn: {
+              key: 'own',
+              label: 'Own',
+            },
+          },
+          {
+            key: 'lastName',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'Last Name',
+            placeholder: 'Last Name',
+            required: true,
+          },
+          {
+            key: 'licenseNumber',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'License Number',
+            placeholder: 'X1122333',
+            required: true,
+          },
+          {
+            key: 'zip',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'ZIP',
+            placeholder: 'ZIP',
+            required: true,
+            mask: '99999',
+          },
+          {
+            key: 'mobilePhone',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'Mobile Phone',
+            icon: <Smartphone />,
+            placeholder: 'Mobile Phone',
+            required: true,
+            mask: '999 999 9999',
+          },
+          {
+            key: 'driverLicenseState',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'Driver License State',
+            placeholder: 'State',
+            required: true,
+          },
+          {
+            key: 'checkZip',
+            type: 'checkZip',
+            className: 'application--item application__personal-info--alert col-12 col-md-6 col-lg-4',
+          },
+      
+          {
+            key: 'homePhone',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'Home(Alternate) Phone (Optional)',
+            icon: <Phone />,
+            placeholder: 'Alternate Phone',
+            mask: '999 999 9999',
+          },
+          {
+            key: 'ssn',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'Social Security Number or ITIN',
+            placeholder: '123 45 6789',
+            required: true,
+          },
+          {
+            key: 'streetAddress',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'Street Address',
+            placeholder: 'Street Address',
+            required: true,
+          },
+          {
+            key: 'email',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'Email',
+            placeholder: 'example@domain.com',
+            required: true,
+          },
+          {
+            key: 'confirmSsn',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'Confirm Social Security Number or ITIN',
+            placeholder: '123 45 6789',
+            required: true,
+          },
+          {
+            key: 'timeAtAddress',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            isNumeric: true,
+            label: 'Time at the address (months)',
+            min: 1,
+            required: true,
+          },
+          {
+            key: 'birthdate',
+            type: 'input',
+            className: 'application--item col-12 col-md-6 col-lg-4',
+            label: 'Birthdate (mm.dd.yyyy)',
+            required: true,
+          },
+          {
+            key: 'emptySpace',
+            type: 'emptySpace',
+            className: 'applications__empty-space col-lg-8',
+          },
+          {
+            key: 'phoneDisclosure',
+            type: 'radioAsButton',
+            className: 'application--item application--item-phone col-12 col-sm-6 col-lg-4',
+            label: 'Phone Disclosure',
+            leftBtn: {
+              key: 'agree',
+              label: 'Agree',
+            },
+            rightBtn: {
+              key: 'disagree',
+              label: 'Disagree',
+            },
+          }
+        ];
+  
+        data: {
+          "firstName": "John",
+          "language": "english",
+          "residenceOwnershipType": "rent",
+          "lastName": "Silver",
+          "licenseNumber": "23131241",
+          "zip": "222222",
+          "mobilePhone": "21412412",
+          "driverLicenseState": "VA",
+          "homePhone": "34234234",
+          "ssn": "23523523523253",
+          "streetAddress": "Main street 22",
+          "email": "silverhand@cyber.com",
+          "confirmSsn": "23523523523253",
+          "timeAtAddress": 22,
+          "birthdate": "16.11.88",
+          "phoneDisclosure": "agree",
+          "incomeSource": "jobIncome",
+          "jobTitle": "Job title",
+          "getPaid": "every2weeks",
+          "currentEmployer": "Young @ Heart",
+          "startDate": "05.05.2018",
+          "lastPayDate": "05.05.2019",
+          "employerPhone": "(307) 555-0133",
+          "grossMonthlyIncome": 1000,
+          "nextPayDate": "18.01.2020",
+          "requestedAmount": "",
+          "productName": ""
+        }
+        `
+      }
+    </code>
+  </pre>,
+
   checkEmptyFields: <pre>
     <code>
       {
         `
+DESCRIPTION: Get tab name by first unfilled field in tabs 
+
 IN COMPONENT:
 
 getUnfilledFieldTabName(res, initialData)
@@ -297,6 +591,8 @@ calculateTableCell: <pre>
   <code>
     {
       `
+DESCRIPTION: Calculate table cells by value. https://i.imgur.com/TaScp0h.png
+
 IN COMPONENT:
 
 <Status
@@ -331,10 +627,6 @@ const calculateTableCell = () => {
     { active: 0, pause: 0 },
   );
 };
-
-
-EXAMPLE:
-https://i.imgur.com/TaScp0h.png
       `
     }
   </code>
@@ -371,272 +663,233 @@ return <div ref={ref} style={{ maxHeight }} className={cn({ 'accordion--content-
     }
   </code>
 </pre>,
-validationUni:
-<pre>
+
+omitKeys: <pre>
   <code>
-    {
-      `
-      FUNCTION:
+    {`
+    DESCRIPTION: Delete elem from object by keys.
 
-      export const checkField = (value, key, values) => {
-        let error = '';
-      
-        if (!value) return error = 'Required field';
-        else if (key === 'email' && !CheckEmail(value)) return error = 'Invalid email';
-        else if (key === 'website' && !CheckWebsite(value)) return error = 'Invalid website';
-        else if ((
-          key === 'mobileNumber'
-          || key === 'mobilePhone'
-          || key === 'phoneNumber'
-          || key === 'employerPhone'
-        ) && !CheckPhone(value)) return error = 'Invalid phone number';
-        else if (key === 'confirmSsn') {
-          values?.ssn != value ? error = \`SSN doesn't match\` : ''
-        }
-        return error;
-      }
-      
-      export const validate = (values, constructor) => Object.keys(values).every(key => {
-        const field = constructor.find(el => el.key === key);
-        return field?.required ? !checkField(values[key], key, values) : true
-      });
+    FUNCTION:
 
-      IN COMPONENT:
+    export const omitKeys = (input, keys = []) => {
+      if (input === null || typeof input !== 'object') return input;
+      keys.reduce((acc, key) => {
+        const { [key]: omit, ...rest } = acc;
+        return rest;
+      }, input)
+    };
+    `}
+  </code>
+</pre>,
 
-      const [isTouched, setIsTouched] = useState(false);
-
-      send: () => {
-        setIsTouched(true);
-        validate(data, fields) && restApi
-          .send({
-            path: \`applications/'$'{id}'\`,
-            method: 'PATCH',
-            body: ExportTransformer('applicationSteps', data),
-            successMess: 'Success'
-          })
-          .then(res => {
-            if (res.ok) {
-              setUncompletedTabName('');
-              setActiveTab('employerInfo');
-            }
-            else toast.error('Something went wrong...');
-          });
-      },
-
-
-      {fields?.map(field => {
-        return (
-          <FormItem
-            values={data ?? {}}
-            key={field.key}
-            field={{
-              ...field,
-              value: data?.[field.key],
-              error: field.required ? isTouched && checkField(data[field.key], field.key, data) : ''
-            }}
-            onChange={(e, key) => handle.change(e, key)}
-          />
-        );
-      })}
-
-
-      EXAMPLE PROPS:
-
-      fields: [
-        {
-          key: 'firstName',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'First Name',
-          placeholder: 'First Name',
-          required: true,
-        },
-        {
-          key: 'language',
-          type: 'radioAsButton',
-          className: 'application--item col-12 col-sm-6 col-lg-4',
-          label: 'Language',
-          leftBtn: {
-            key: 'english',
-            label: 'English',
-          },
-          rightBtn: {
-            key: 'spanish',
-            label: 'Spanish',
-          },
-        },
-        {
-          key: 'residenceOwnershipType',
-          type: 'radioAsButton',
-          className: 'application--item col-12 col-sm-6 col-lg-4',
-          label: 'Residence ownership type',
-          leftBtn: {
-            key: 'rent',
-            label: 'Rent',
-          },
-          rightBtn: {
-            key: 'own',
-            label: 'Own',
-          },
-        },
-        {
-          key: 'lastName',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'Last Name',
-          placeholder: 'Last Name',
-          required: true,
-        },
-        {
-          key: 'licenseNumber',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'License Number',
-          placeholder: 'X1122333',
-          required: true,
-        },
-        {
-          key: 'zip',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'ZIP',
-          placeholder: 'ZIP',
-          required: true,
-          mask: '99999',
-        },
-        {
-          key: 'mobilePhone',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'Mobile Phone',
-          icon: <Smartphone />,
-          placeholder: 'Mobile Phone',
-          required: true,
-          mask: '999 999 9999',
-        },
-        {
-          key: 'driverLicenseState',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'Driver License State',
-          placeholder: 'State',
-          required: true,
-        },
-        {
-          key: 'checkZip',
-          type: 'checkZip',
-          className: 'application--item application__personal-info--alert col-12 col-md-6 col-lg-4',
-        },
+getQueryString: <pre>
+  <code>
+    {`
+    export const getQueryString = input => {
+      let params;
+      if (Array.isArray(input)) {
+        params = input;
+      } else if (typeof input === 'object') {
+        params = Object.keys(input).filter(key => input[key]).map(key => \`'$'{key}='$'{input[key]}\`);
+      } else if (typeof input === 'string') return input;
+      else return '';
     
-        {
-          key: 'homePhone',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'Home(Alternate) Phone (Optional)',
-          icon: <Phone />,
-          placeholder: 'Alternate Phone',
-          mask: '999 999 9999',
-        },
-        {
-          key: 'ssn',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'Social Security Number or ITIN',
-          placeholder: '123 45 6789',
-          required: true,
-        },
-        {
-          key: 'streetAddress',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'Street Address',
-          placeholder: 'Street Address',
-          required: true,
-        },
-        {
-          key: 'email',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'Email',
-          placeholder: 'example@domain.com',
-          required: true,
-        },
-        {
-          key: 'confirmSsn',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'Confirm Social Security Number or ITIN',
-          placeholder: '123 45 6789',
-          required: true,
-        },
-        {
-          key: 'timeAtAddress',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          isNumeric: true,
-          label: 'Time at the address (months)',
-          min: 1,
-          required: true,
-        },
-        {
-          key: 'birthdate',
-          type: 'input',
-          className: 'application--item col-12 col-md-6 col-lg-4',
-          label: 'Birthdate (mm.dd.yyyy)',
-          required: true,
-        },
-        {
-          key: 'emptySpace',
-          type: 'emptySpace',
-          className: 'applications__empty-space col-lg-8',
-        },
-        {
-          key: 'phoneDisclosure',
-          type: 'radioAsButton',
-          className: 'application--item application--item-phone col-12 col-sm-6 col-lg-4',
-          label: 'Phone Disclosure',
-          leftBtn: {
-            key: 'agree',
-            label: 'Agree',
-          },
-          rightBtn: {
-            key: 'disagree',
-            label: 'Disagree',
-          },
-        }
-      ];
+      return params.length ? '?' + params.join('&') : '';
+    };
+    `}
+  </code>
+</pre>,
+getQueryParamsFromUrl: <pre>
+  <code>
+    {`
+    DESCRIPTION: Make object from query string.
 
-      data: {
-        "firstName": "John",
-        "language": "english",
-        "residenceOwnershipType": "rent",
-        "lastName": "Silver",
-        "licenseNumber": "23131241",
-        "zip": "222222",
-        "mobilePhone": "21412412",
-        "driverLicenseState": "VA",
-        "homePhone": "34234234",
-        "ssn": "23523523523253",
-        "streetAddress": "Main street 22",
-        "email": "silverhand@cyber.com",
-        "confirmSsn": "23523523523253",
-        "timeAtAddress": 22,
-        "birthdate": "16.11.88",
-        "phoneDisclosure": "agree",
-        "incomeSource": "jobIncome",
-        "jobTitle": "Job title",
-        "getPaid": "every2weeks",
-        "currentEmployer": "Young @ Heart",
-        "startDate": "05.05.2018",
-        "lastPayDate": "05.05.2019",
-        "employerPhone": "(307) 555-0133",
-        "grossMonthlyIncome": 1000,
-        "nextPayDate": "18.01.2020",
-        "requestedAmount": "",
-        "productName": ""
+    FUNCTION:
+
+    export const getQueryParamsFromUrl = (url = String.prototype) => {
+      if (url && typeof url === 'string') {
+        return decodeURI(url).split('?')[1].split('&').reduce((acc, item) => {
+          const queryItem = item.split('=');
+          return {
+            ...acc,
+            [queryItem[0]]: queryItem[1]
+          }
+        }, {});
+      } else return null;
+    };
+    `}
+  </code>
+</pre>,
+
+getQueryObj: <pre>
+  <code>
+    {`
+    export const getQueryObj = (obj, nested) => {
+      const { filter, ...rest } = obj || toJS(nested ? PSStore.queryForNestedList[nested] : PSStore.query);
+      const DEFAULT = nested ? DEFAULT_QUERY_VALUES_FOR_NESTED_LIST : DEFAULT_QUERY_VALUES;
+    
+      const queryObj = REQUIRED_QUERY_KEYS.reduce((acc, key) => ({ ...acc, [key]: rest[key] ?? DEFAULT[key] }), {});
+      let filtersObj = {};
+      if (!nested) filtersObj = Object.keys(filter || {})
+        .filter((key) => filter[key])
+        .reduce((acc, key) => ({ ...acc, [\`filter['$'{key}]\`]: filter[key] }), {});
+    
+      return { ...queryObj, ...filtersObj };
+    };
+    `}
+  </code>
+</pre>,
+
+getStoreQueryObj: <pre>
+  <code>
+    {`
+    export const getStoreQueryObj = (obj, nested) => {
+      const { page, perPage, sort, direction, ...rest } = obj || {};
+      const filterObj = Object.keys(rest)
+        .filter(key => !!key && !!rest[key])
+        .reduce((acc, key) => ({ ...acc, [key.split('[')[1]?.split(']')[0]]: rest[key] }), {});
+      const queryValues = { page, perPage, sort, direction };
+      const queryObj = Object.keys(queryValues).reduce((acc, key) => ({ ...acc, [key]: queryValues[key] || DEFAULT_QUERY_VALUES[key] }), {})
+      return { ...queryObj, ...(!nested ? { filter: filterObj } : {}) }
+    };
+    `}
+  </code>
+</pre>,
+
+getUrl: <pre>
+  <code>
+    {`
+    export const getUrl = (scheme, prop, value, nested) => {
+      if (scheme === '/' || scheme === 'ping-tree') return scheme;
+    
+      const { filter = {}, ...rest } = nested ? getQueryObj(null, nested) : getQueryObj();
+      let base;
+      let notBase;
+      const DEFAULT = nested ? DEFAULT_QUERY_VALUES_FOR_NESTED_LIST : DEFAULT_QUERY_VALUES;
+    
+      if (!prop) {
+        const query = getQueryString({ ...rest, ...filter })
+        return \`/'$'{scheme}'$'{query}\`
       }
-      `
+      else if (prop === 'newPage') {
+        base = { ...DEFAULT };
+        notBase = filter;
+      }
+      else if (Object.keys(rest).includes(prop)) {
+        base = { ...rest, [prop]: value || DEFAULT[prop] };
+        notBase = filter;
+      }
+      else if (Object.keys(filter).includes(prop)) {
+        base = { ...filter, [prop]: value };
+        notBase = rest;
+      }
+      else if (prop === 'query' || prop === 'queryForNestedList') {
+        base = Object.keys(rest).reduce((ac, key) => ({ ...ac, [key]: value[key] || DEFAULT[key] }), {});
+        notBase = filter;
+      }
+      const query = getQueryString({ ...base, ...notBase });
+    
+      return \`/'$'{scheme}'$'{query}\`
     }
+    `}
+  </code>
+</pre>,
+
+useOutsideToggle: <pre>
+  <code>
+    {`
+    DESCRIPTION: Close dropdown by click outside.
+
+    IN COMPONENT:
+    const userMenu = useRef(null);
+    const [isLinksListOpen, setIsLinksListOpen] = useState(false);
+
+    closeLinksList: () => setIsLinksListOpen(false),
+
+    useOutsideToggle(userMenu, handle.closeMenu);
+
+    <div className="header__links-list-dropdown" ref={linksList}>
+    {links.map(({ key, link, title, className }) => (
+      link &&
+      <NavLink
+        key={key}
+        onClick={handle.closeLinksList}
+        className={cn('header__links-list-dropdown__item', { 'header__links-list-dropdown__item-active': location.pathname.includes(key) }, className)}
+        to={link}
+      >
+        {location.pathname.includes(key) && <Check className="header__links-list-dropdown__item-active--icon" />}
+        {Lng(title)}
+      </NavLink>
+    ))}
+  </div>
+
+    FUNCTION:
+
+    export const useOutsideToggle = (ref, setOut, open) => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setOut(open);
+        }
+      }
+    
+      useEffect(() => {
+        document.addEventListener('mouseup', handleClickOutside);
+        return () => {
+          // Unbind the event listener on clean up
+          document.removeEventListener('mouseup', handleClickOutside);
+        };
+      }, [ref]);
+    };
+    `}
+  </code>
+</pre>,
+
+formFieldsByOrder: <pre>
+  <code>
+    {`
+
+    FUNCTION:
+    export const formFieldsByOrder = (data, order) => {
+      return order.map(el => data[el]);
+    };
+
+    IN COMPONENT:
+    const fieldsOrder = constructor.fieldsOrder[activeTab];
+    
+    fieldsOrder.map((column, colIndex) => {
+      return (
+        <div
+            key={colIndex}
+            className={\`col--big col-12 col-sm-6 '$'{
+              colIndex === 2 ? 'col-md-6' : 'col-md-6'
+            } col-xl-4 consumer-form__column-'$'{colIndex}\`}
+          >
+            <div className="row">
+              {column.map(fieldKey => {
+                return (
+                  <FormItem key={fieldKey} field={form[fieldKey]} onChange={onChange} values={values} setForm={setForm} />
+                );
+              })}
+            </div>
+          </div>
+
+    EXAMPLE PROPS:
+    fieldsOrder: {
+      personalInfo: [
+        ['firstName', 'lastName', 'mobilePhone', 'homePhone', 'email', 'birthdate'],
+        ['language', 'licenseNumber', 'driverLicenseState', 'ssn', 'confirmSsn'],
+        ['residenceOwnershipType', 'zip', 'checkZip', 'streetAddress', 'timeAtAddress'],
+        ['phoneDisclosure', 'agree'],
+      ],
+      employerInfo: [
+        ['incomeSource', 'currentEmployer', 'employerPhone'],
+        ['jobTitle', 'startDate', 'grossMonthlyIncome'],
+        ['getPaid', 'lastPayDate', 'nextPayDate'],
+      ],
+      sendUrl: [],
+    },
+
+    `}
   </code>
 </pre>
 }

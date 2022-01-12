@@ -21,7 +21,7 @@ const Accordion = ({ items, className, itemClassName, isMenuHovered, isOpen }) =
 
   return (
     <div className={cn('accordion', className)}>
-      {data?.map((item, index) => {
+      {items?.map((item, index) => {
         const Icon = Icons[item.icon];
         return item.link ? (
           <NavLink key={index} to={item.link} className={cn('main-menu--item main-menu--items-box-title')}>

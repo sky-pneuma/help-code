@@ -30,10 +30,17 @@ export const MENU_ITEMS = {
         { id: 'getQueryParams', link: '/functions/get-query-params', title: 'getQueryParams' },
         { id: 'clone', link: '/functions/clone', title: 'clone' },
         { id: 'validation', link: '/functions/validation', title: 'validation' },
+        { id: 'validationUni', link: '/functions/validationUni', title: 'validationUni' },
         { id: 'checkEmptyFields', link: '/functions/check-empty-fields', title: 'checkEmptyFields' },
         { id: 'calculateTableCell', link: '/functions/calculate-table-cell', title: 'calculateTableCell' },
         { id: 'getClosedAccordionBodyHeight', link: '/functions/get-closed-accordion-body-height', title: 'getClosedAccordionBodyHeight' },
-        { id: 'validationUni', link: '/functions/validationUni', title: 'validationUni' },
+        { id: 'omitKeys', link: '/functions/omitKeys', title: 'omitKeys' },
+        { id: 'getQueryString', link: '/functions/getQueryString', title: 'getQueryString' },
+        { id: 'getQueryParamsFromUrl', link: '/functions/getQueryParamsFromUrl', title: 'getQueryParamsFromUrl' },
+        { id: 'getQueryObj', link: '/functions/getQueryObj', title: 'getQueryObj' },
+        { id: 'getStoreQueryObj', link: '/functions/getStoreQueryObj', title: 'getStoreQueryObj' },
+        { id: 'getUrl', link: '/functions/getUrl', title: 'getUrl' },
+        { id: 'useOutsideToggle', link: '/functions/useOutsideToggle', title: 'useOutsideToggle' },
       ]
     },
     {

@@ -25,13 +25,13 @@ const MainMenu = (props) => {
   const onMenuHover = () => {
     if (!isOpen) {
       setIsMenuHovered(!isMenuHovered);
-      items.mainMenu.forEach((item) => {
+      items.branch.forEach((item) => {
         item.isOpen = false;
       });
-      items.partners.forEach((item) => {
+      items.branch2.forEach((item) => {
         item.isOpen = false;
       });
-      items.other.forEach((item) => {
+      items.branch3.forEach((item) => {
         item.isOpen = false;
       });
     }
@@ -39,13 +39,13 @@ const MainMenu = (props) => {
 
   const onCloseMenu = () => {
     setIsOpen(!isOpen);
-    items.mainMenu.forEach((item) => {
+    items.branch.forEach((item) => {
       item.isOpen = false;
     });
-    items.partners.forEach((item) => {
+    items.branch2.forEach((item) => {
       item.isOpen = false;
     });
-    items.other.forEach((item) => {
+    items.branch3.forEach((item) => {
       item.isOpen = false;
     });
   };

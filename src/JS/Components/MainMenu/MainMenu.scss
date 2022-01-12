@@ -72,36 +72,18 @@
     height: 36px;
     width: 36px;
     transition: all 0.2s ease-out;
-    position: relative;
-    color: red;
-
-    &:after {
-      content: "Code Help";
-      position: absolute;
-      top: 8px;
-      left: 45px;
-      font-family: "JetBrains Mono";
-      font-size: 16px;
-      color: #ffff;
-      white-space: nowrap;
-    }
 
     &-none {
       height: 0;
       width: 0;
       opacity: 0;
-      transition: all 0.2s ease;
-
-      &:after {
-        opacity: 0;
-      }
+      transition: all 0.2s ease-out;
     }
 
     &-close {
       //background-image: url("../../../assets/img/tabIcon.png");
       background-repeat: no-repeat;
       background-position: center;
-      background-size: contain;
       height: 36px;
       width: 36px;
     }

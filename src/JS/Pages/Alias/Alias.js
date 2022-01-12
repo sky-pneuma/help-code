@@ -17,7 +17,7 @@ const Alias = () => {
             alias gstu='git stash -u'
           </li>
           <li>
-            <pre>{`acp() { gaa && gcmsg && "$@" && gp }`}</pre>
+            <pre>{`acp() { gaa && gcmsg "$@" && gp }`}</pre>
           </li>
         </ul>
         <span>Then: ctrl+O, Enter, ctrl+X</span>
