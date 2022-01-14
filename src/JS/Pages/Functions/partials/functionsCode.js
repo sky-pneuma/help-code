@@ -222,10 +222,10 @@ FUNCTION:
   `}</code></pre>,
 
   validationUni:
-  <pre>
-    <code>
-      {
-        `
+    <pre>
+      <code>
+        {
+          `
         FUNCTION:
        
         export const checkField = (value, key, values) => {
@@ -486,9 +486,9 @@ FUNCTION:
           "productName": ""
         }
         `
-      }
-    </code>
-  </pre>,
+        }
+      </code>
+    </pre>,
 
   checkEmptyFields: <pre>
     <code>
@@ -587,10 +587,10 @@ initialData: {
     </code>
   </pre>,
 
-calculateTableCell: <pre>
-  <code>
-    {
-      `
+  calculateTableCell: <pre>
+    <code>
+      {
+        `
 DESCRIPTION: Calculate table cells by value. https://i.imgur.com/TaScp0h.png
 
 IN COMPONENT:
@@ -628,14 +628,14 @@ const calculateTableCell = () => {
   );
 };
       `
-    }
-  </code>
-</pre>,
+      }
+    </code>
+  </pre>,
 
-getClosedAccordionBodyHeight: <pre>
-  <code>
-    {
-      `
+  getClosedAccordionBodyHeight: <pre>
+    <code>
+      {
+        `
 IN COMPONENT:
 
 const AccordionItem = ({ item, onClick, isOpen, className, children, noChevron }) => {
@@ -660,13 +660,13 @@ return <div ref={ref} style={{ maxHeight }} className={cn({ 'accordion--content-
 </div>
 }
       `
-    }
-  </code>
-</pre>,
+      }
+    </code>
+  </pre>,
 
-omitKeys: <pre>
-  <code>
-    {`
+  omitKeys: <pre>
+    <code>
+      {`
     DESCRIPTION: Delete elem from object by keys.
 
     FUNCTION:
@@ -679,12 +679,12 @@ omitKeys: <pre>
       }, input)
     };
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-getQueryString: <pre>
-  <code>
-    {`
+  getQueryString: <pre>
+    <code>
+      {`
     export const getQueryString = input => {
       let params;
       if (Array.isArray(input)) {
@@ -697,11 +697,11 @@ getQueryString: <pre>
       return params.length ? '?' + params.join('&') : '';
     };
     `}
-  </code>
-</pre>,
-getQueryParamsFromUrl: <pre>
-  <code>
-    {`
+    </code>
+  </pre>,
+  getQueryParamsFromUrl: <pre>
+    <code>
+      {`
     DESCRIPTION: Make object from query string.
 
     FUNCTION:
@@ -718,12 +718,12 @@ getQueryParamsFromUrl: <pre>
       } else return null;
     };
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-getQueryObj: <pre>
-  <code>
-    {`
+  getQueryObj: <pre>
+    <code>
+      {`
     export const getQueryObj = (obj, nested) => {
       const { filter, ...rest } = obj || toJS(nested ? PSStore.queryForNestedList[nested] : PSStore.query);
       const DEFAULT = nested ? DEFAULT_QUERY_VALUES_FOR_NESTED_LIST : DEFAULT_QUERY_VALUES;
@@ -737,12 +737,12 @@ getQueryObj: <pre>
       return { ...queryObj, ...filtersObj };
     };
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-getStoreQueryObj: <pre>
-  <code>
-    {`
+  getStoreQueryObj: <pre>
+    <code>
+      {`
     export const getStoreQueryObj = (obj, nested) => {
       const { page, perPage, sort, direction, ...rest } = obj || {};
       const filterObj = Object.keys(rest)
@@ -753,12 +753,12 @@ getStoreQueryObj: <pre>
       return { ...queryObj, ...(!nested ? { filter: filterObj } : {}) }
     };
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-getUrl: <pre>
-  <code>
-    {`
+  getUrl: <pre>
+    <code>
+      {`
     export const getUrl = (scheme, prop, value, nested) => {
       if (scheme === '/' || scheme === 'ping-tree') return scheme;
     
@@ -792,12 +792,12 @@ getUrl: <pre>
       return \`/'$'{scheme}'$'{query}\`
     }
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-useOutsideToggle: <pre>
-  <code>
-    {`
+  useOutsideToggle: <pre>
+    <code>
+      {`
     DESCRIPTION: Close dropdown by click outside.
 
     IN COMPONENT:
@@ -841,12 +841,12 @@ useOutsideToggle: <pre>
       }, [ref]);
     };
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-formFieldsByOrder: <pre>
-  <code>
-    {`
+  formFieldsByOrder: <pre>
+    <code>
+      {`
 
     FUNCTION:
     export const formFieldsByOrder = (data, order) => {
@@ -890,12 +890,12 @@ formFieldsByOrder: <pre>
     },
 
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-addKeyPressEvent: <pre>
-  <code>
-    {`
+  addKeyPressEvent: <pre>
+    <code>
+      {`
     export const KEY_CODE = Object.freeze({ ENTER: 13, ESC: 27 });
     
      const handle = {
@@ -913,12 +913,12 @@ addKeyPressEvent: <pre>
       return () => document.removeEventListener('keydown', handle.pressEnter);
     }, []);
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-redirect: <pre>
-  <code>
-    {`
+  redirect: <pre>
+    <code>
+      {`
     import { Redirect } from "react-router-dom";
     import PageNotFound from './JS/Pages/PageNotFound/PageNotFound';
     
@@ -927,6 +927,65 @@ redirect: <pre>
       {path: '*', component: () => <Redirect to="/page-not-found" /> }
     ];
     `}
-  </code>
-</pre>
+    </code>
+  </pre>,
+
+  scrollToFirstFieldWithError: <pre>
+    <code>
+      {`
+    FUNCTION:
+
+    export const scrollToFirstFieldWithError = (errorKeys, ref) => {
+      if (errorKeys.length) {
+        const fieldsWithError = errorKeys.map(key => ref.current.querySelector(\`[data-key='$'{key}]\`));
+        const getFirstFieldWithError = fieldsWithError.reduce(
+          (acc, item) => (acc === null || item.getBoundingClientRect().top < acc ? item : acc),
+          null,
+        );
+        getFirstFieldWithError.scrollIntoView({ alignToTop: true, block: 'center', behavior: 'smooth' });
+      }
+    };
+
+    IN COMPONENT: 
+
+    const [errorKeys, setErrorKeys] = useState([]);
+    const ref = useRef();
+
+    const handle = {
+      save: () => {
+        onSave();
+        setErrorKeys(Object.values(form).filter(field => field.error).map(el => el.key));
+      },
+    }
+    useEffect(() => {
+      scrollToFirstFieldWithError(errorKeys, ref);
+    }, [errorKeys]);
+
+    <div ref={ref} className="row row--big">{renderFields()}</div> //FormItem
+
+    //FormItem:
+    <FormElement label={label} required={required} error={error} className={className} hint={hint}>
+      <div data-key={key} className="w100">
+        {renderInner()}
+      </div>
+    </FormElement>
+
+    EXAMPLE PROPS:
+    form: {
+      ...,
+      firstName: {
+        className: "application--item col-12 input_gray"
+        error: "Required field"
+        key: "firstName"
+        label: "First Name"
+        placeholder: "First Name"
+        required: true
+        value: ""
+      },
+      ...
+    }
+
+    `}
+    </code>
+  </pre>
 }

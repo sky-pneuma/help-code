@@ -42,6 +42,7 @@ export const MENU_ITEMS = {
         { id: 'getUrl', link: '/functions/getUrl', title: 'getUrl' },
         { id: 'useOutsideToggle', link: '/functions/useOutsideToggle', title: 'useOutsideToggle' },
         { id: 'addKeyPressEvent', link: '/functions/addKeyPressEvent', title: 'addKeyPressEvent' },
+        { id: 'scrollToFirstFieldWithError', link: '/functions/scrollToFirstFieldWithError', title: 'scrollToFirstFieldWithError' },
       ]
     },
     {
