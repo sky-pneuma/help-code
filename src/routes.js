@@ -26,6 +26,7 @@ export const routes = [
   { id: 'useOutsideToggle', path: '/functions/useOutsideToggle', component: RenderFunctionsCode },
   { id: 'addKeyPressEvent', path: '/functions/addKeyPressEvent', exact: true, component: RenderFunctionsCode },
   { id: 'scrollToFirstFieldWithError', path: '/functions/scrollToFirstFieldWithError', exact: true, component: RenderFunctionsCode },
+  { id: 'animatedScrollTo', path: '/functions/animatedScrollTo', exact: true, component: RenderFunctionsCode },
   { id: 'redirect', path: '/other/page-not-found', exact: true, component: RenderFunctionsCode },
 
   { id: 'linuxAlias', path: '/alias', exact: true, component: Alias },

@@ -987,5 +987,52 @@ return <div ref={ref} style={{ maxHeight }} className={cn({ 'accordion--content-
 
     `}
     </code>
+  </pre>,
+
+  animatedScrollTo: <pre>
+    <code>
+      {`
+      DESCRIPTION: 
+      Scroll to first field with received params 
+
+      FUNCTION:
+
+      export const animatedScrollTo = (targetClassName, containerSearchType = 'class', containerName, offset = 0) => {
+        const container = document.querySelector(\`[name='$'{containerName}]\`) || document;
+        let element;
+        switch (containerSearchType) {
+          case 'class':
+            element = container.getElementsByClassName(targetClassName)[0];
+            break;
+          case 'tag':
+            element = container.getElementsByTagName(targetClassName)[0];
+            break;
+          case 'id':
+            element = container.getElementById(targetClassName);
+            break;
+          default: element = container.querySelector(\`['$'{containerSearchType}='$'{targetClassName}]\`)[0];
+        }
+      
+        element.style.transform = \`translateY(-'$'{offset}px)\`;
+        element.scrollIntoView({ behavior: 'smooth' });
+        element.style.transform = 'translateY(0)';
+      };
+
+      IN COMPONENT: 
+
+      const handle = {
+        save: () => {
+          onSave();
+          setTimeout(() => animatedScrollTo('input__wrap_error', 'class', 'page-container', 20), 0);
+        },
+      };
+
+      PROPS: 
+      targetClassName - className искомого элемента(например "input__wrap_error")
+      containerSearchType - тип искомого элемента
+      containerName - атрибут искомого элемента(name, id и тд.)(элемент должен быть скроллируемым)
+      offset - отступ сверху до элемента после скролла
+      `}
+    </code>
   </pre>
 }
