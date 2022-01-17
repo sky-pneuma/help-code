@@ -997,11 +997,11 @@ return <div ref={ref} style={{ maxHeight }} className={cn({ 'accordion--content-
 
       FUNCTION:
 
-      export const animatedScrollTo = (targetClassName, containerSearchType = 'class', containerName, offset = 0) => {
+      export const animatedScrollTo = (targetClassName, containerName, containerSearchType = 'className', offset = 0) => {
         const container = document.querySelector(\`[name='$'{containerName}]\`) || document;
         let element;
         switch (containerSearchType) {
-          case 'class':
+          case 'className':
             element = container.getElementsByClassName(targetClassName)[0];
             break;
           case 'tag':
@@ -1023,7 +1023,7 @@ return <div ref={ref} style={{ maxHeight }} className={cn({ 'accordion--content-
       const handle = {
         save: () => {
           onSave();
-          setTimeout(() => animatedScrollTo('input__wrap_error', 'class', 'page-container', 20), 0);
+          setTimeout(() => animatedScrollTo('input__wrap_error', 'page-container', 'className', 20), 0);
         },
       };
 
