@@ -1034,5 +1034,17 @@ return <div ref={ref} style={{ maxHeight }} className={cn({ 'accordion--content-
       offset - отступ сверху до элемента после скролла
       `}
     </code>
-  </pre>
+  </pre>,
+
+phoneNumberHyphen: <pre>
+  <code>
+    {`
+    STRING: 5554443333
+
+    REGEXP: string.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
+    
+    RESULT: 555-444-3333
+    `}
+  </code>
+</pre>
 }

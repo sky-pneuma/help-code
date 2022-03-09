@@ -47,10 +47,12 @@ export const MENU_ITEMS = {
       ]
     },
     {
-      title: 'Chapter 3',
+      title: 'RegExp',
       icon: 'FiUsers',
       className: 'color--gray-gull',
-      children: []
+      children: [
+        { id: 'phoneNumberHyphen', link: '/regExp/phoneNumberHyphen', title: 'phoneNumberHyphen' },
+      ]
     },
     {
       title: 'Other',
