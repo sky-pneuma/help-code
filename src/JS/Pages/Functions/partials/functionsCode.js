@@ -1036,6 +1036,48 @@ return <div ref={ref} style={{ maxHeight }} className={cn({ 'accordion--content-
     </code>
   </pre>,
 
+formatPriceInput: <pre>
+  <code>
+    {`
+
+    FUNCTION:
+
+    // format from 1000000000 to $1000,000,000
+    export const formatPriceInput = value => {
+      //содержит ли value точку
+      const isFraction = value.includes('.');
+    
+      //взять строку до точки
+      const valueBeforeDot = isFraction ? value.slice(0, value.indexOf('.')) : value;
+    
+      //расстановка запятых после каждой 3й цифры с конца
+      const intPart = valueBeforeDot
+        .split('')
+        .reverse()
+        .reduce((acc, item, idx) => (idx % 3 === 0 && idx !== 0 ? [...acc, ',', item] : [...acc, item]), [])
+        .reverse()
+        .join('');
+    
+      return isFraction ? intPart + value.slice(value.indexOf('.')) : intPart;
+    };
+    
+    // format from 100.45345345 to 100.45
+    export const twoDigitAfterDot = value => {
+      if (value.includes('.')) {
+        const valueAfterDot = value.slice(0, value.indexOf('.') + 3);
+        return valueAfterDot;
+      } else {
+        return value;
+      }
+    };
+
+    IN COMPONENT: 
+
+    formatPriceInput(value)
+    `}
+  </code>
+</pre>,
+
 phoneNumberHyphen: <pre>
   <code>
     {`
