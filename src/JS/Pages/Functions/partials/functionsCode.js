@@ -1088,5 +1088,40 @@ phoneNumberHyphen: <pre>
     RESULT: 555-444-3333
     `}
   </code>
+</pre>,
+
+defineBoxPositionByScreen: <pre>
+  <code>
+    {`
+    FUNCTION:
+
+    export const defineBoxPositionByScreen = (ref) => {
+      const elemRightPosition = ref.current.getBoundingClientRect().right;
+      const elemBottomPosition = ref.current.getBoundingClientRect().bottom;
+      const screenWidth = document.documentElement.clientWidth;
+      const screenHeight = document.documentElement.clientHeight;
+    
+      if (elemRightPosition > screenWidth && elemBottomPosition < screenHeight) {
+        return 'left';
+      } else if (elemBottomPosition > screenHeight && elemRightPosition < screenWidth) {
+        return 'top';
+      } else if (elemRightPosition > screenWidth && elemBottomPosition > screenHeight) {
+        return 'top-left';
+      }
+    };
+
+    IN COMPONENT:
+    const boxRef = useRef();
+    const [elemPosition, setElemPosition] = useState('');
+
+    useLayoutEffect(() => {
+      setElemPosition(defineBoxPositionByScreen(boxRef))
+    }, []);
+
+    <div className={cn({[\`opened-part--\${elemPosition}\`]: elemPosition})} ref={boxRef}> 
+      Text
+    </div>
+    `}
+  </code>
 </pre>
 }

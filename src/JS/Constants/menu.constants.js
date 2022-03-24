@@ -45,6 +45,7 @@ export const MENU_ITEMS = {
         { id: 'scrollToFirstFieldWithError', link: '/functions/scrollToFirstFieldWithError', title: 'scrollToFirstFieldWithError' },
         { id: 'animatedScrollTo', link: '/functions/animatedScrollTo', title: 'animatedScrollTo' },
         { id: 'formatPriceInput', link: '/functions/formatPriceInput', title: 'formatPriceInput' },
+        { id: 'defineBoxPositionByScreen', link: '/functions/defineBoxPositionByScreen', title: 'defineBoxPositionByScreen' },
       ]
     },
     {

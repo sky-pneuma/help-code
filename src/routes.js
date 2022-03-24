@@ -28,6 +28,7 @@ export const routes = [
   { id: 'scrollToFirstFieldWithError', path: '/functions/scrollToFirstFieldWithError', exact: true, component: RenderFunctionsCode },
   { id: 'animatedScrollTo', path: '/functions/animatedScrollTo', exact: true, component: RenderFunctionsCode },
   { id: 'formatPriceInput', path: '/functions/formatPriceInput', exact: true, component: RenderFunctionsCode },
+  { id: 'defineBoxPositionByScreen', path: '/functions/defineBoxPositionByScreen', exact: true, component: RenderFunctionsCode },
   { id: 'redirect', path: '/other/page-not-found', exact: true, component: RenderFunctionsCode },
   
   { id: 'phoneNumberHyphen', path: '/regExp/phoneNumberHyphen', exact: true, component: RenderFunctionsCode },
