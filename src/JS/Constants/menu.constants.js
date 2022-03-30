@@ -46,6 +46,7 @@ export const MENU_ITEMS = {
         { id: 'animatedScrollTo', link: '/functions/animatedScrollTo', title: 'animatedScrollTo' },
         { id: 'formatPriceInput', link: '/functions/formatPriceInput', title: 'formatPriceInput' },
         { id: 'defineBoxPositionByScreen', link: '/functions/defineBoxPositionByScreen', title: 'defineBoxPositionByScreen' },
+        { id: 'formatPhone', link: '/functions/formatPhone', title: 'formatPhone' },
       ]
     },
     {

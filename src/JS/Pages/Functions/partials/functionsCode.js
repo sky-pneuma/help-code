@@ -1123,5 +1123,14 @@ defineBoxPositionByScreen: <pre>
     </div>
     `}
   </code>
+</pre>,
+
+formatPhone: <pre>
+  <code>
+    {`
+    //format phone number from '5554443333' to '555 444 3333'
+    export const formatPhone = (value) => value.replace(/(\d{3})\D?(\d{3})\D?(\d{4})/,"$1 $2 $3");
+    `}
+  </code>
 </pre>
 }
