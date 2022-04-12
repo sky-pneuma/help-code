@@ -47,6 +47,7 @@ export const MENU_ITEMS = {
         { id: 'formatPriceInput', link: '/functions/formatPriceInput', title: 'formatPriceInput' },
         { id: 'defineBoxPositionByScreen', link: '/functions/defineBoxPositionByScreen', title: 'defineBoxPositionByScreen' },
         { id: 'formatPhone', link: '/functions/formatPhone', title: 'formatPhone' },
+        { id: 'copyToClipboard', link: '/functions/copyToClipboard', title: 'copyToClipboard' },
       ]
     },
     {

@@ -1132,5 +1132,30 @@ formatPhone: <pre>
     export const formatPhone = (value) => value.replace(/(\d{3})\D?(\d{3})\D?(\d{4})/,"$1 $2 $3");
     `}
   </code>
-</pre>
+</pre>,
+copyToClipboard: <pre>
+  <code>
+    {`
+   PROPS: string/number/object/array
+
+   FUNCTION:
+
+   export const copyToClipboard = (value = '') => {
+    const transformedString = JSON.stringify(value)
+      .replace(/,/g, ',\\n  ')
+      .replace(/{/g, '{\\n  ')
+      .replace(/}/g, '\\n}')
+      .replace(/},/g, '  },')
+  
+    if (typeof value === 'string') return navigator.clipboard.writeText(value);
+    else return navigator.clipboard.writeText(transformedString);
+  };
+
+  IN COMPONENT:
+
+  copyToClipboard({ a: 'test', b: 'test 2' })
+   `}
+  </code>
+</pre>,
+
 }
