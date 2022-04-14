@@ -1136,7 +1136,7 @@ formatPhone: <pre>
 copyToClipboard: <pre>
   <code>
     {`
-   PROPS: string/number/object/array
+   PROPS: string/number/object
 
    FUNCTION:
 
@@ -1157,5 +1157,17 @@ copyToClipboard: <pre>
    `}
   </code>
 </pre>,
+firstLetterCapital: <pre>
+  <code>
+    {`
+    //format string from 'test' to 'Test'
 
+    FUNCTION:
+
+    const firstLetterCapital = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+
+    `}
+  </code>
+</pre>
 }

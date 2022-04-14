@@ -31,6 +31,7 @@ export const routes = [
   { id: 'defineBoxPositionByScreen', path: '/functions/defineBoxPositionByScreen', exact: true, component: RenderFunctionsCode },
   { id: 'formatPhone', path: '/functions/formatPhone', exact: true, component: RenderFunctionsCode },
   { id: 'copyToClipboard', path: '/functions/copyToClipboard', exact: true, component: RenderFunctionsCode },
+  { id: 'firstLetterCapital', path: '/functions/firstLetterCapital', exact: true, component: RenderFunctionsCode },
 
   { id: 'redirect', path: '/other/page-not-found', exact: true, component: RenderFunctionsCode },
   

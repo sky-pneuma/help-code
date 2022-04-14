@@ -48,6 +48,7 @@ export const MENU_ITEMS = {
         { id: 'defineBoxPositionByScreen', link: '/functions/defineBoxPositionByScreen', title: 'defineBoxPositionByScreen' },
         { id: 'formatPhone', link: '/functions/formatPhone', title: 'formatPhone' },
         { id: 'copyToClipboard', link: '/functions/copyToClipboard', title: 'copyToClipboard' },
+        { id: 'firstLetterCapital', link: '/functions/firstLetterCapital', title: 'firstLetterCapital' },
       ]
     },
     {
