@@ -5,7 +5,7 @@ export const constructor = [
   { short: 'gp -f', command: 'git push --force' },
   { short: 'gl', command: 'git pull' },
   { short: 'gf', command: 'git fetch' },
-  { short: 'grbm', command: 'git rebase ${git_main_branch}' },
+  { short: 'grbm', command: 'git rebase origin/master' },
   { short: 'grbc', command: 'git rebase --continue' },
   { short: 'grba', command: 'git rebase --abort' },
   { short: 'gst', command: 'git status' },
