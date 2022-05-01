@@ -1036,9 +1036,9 @@ return <div ref={ref} style={{ maxHeight }} className={cn({ 'accordion--content-
     </code>
   </pre>,
 
-formatPriceInput: <pre>
-  <code>
-    {`
+  formatPriceInput: <pre>
+    <code>
+      {`
 
     FUNCTION:
 
@@ -1075,24 +1075,24 @@ formatPriceInput: <pre>
 
     formatPriceInput(value)
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-phoneNumberHyphen: <pre>
-  <code>
-    {`
+  phoneNumberHyphen: <pre>
+    <code>
+      {`
     STRING: 5554443333
 
-    REGEXP: string.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
+    REGEXP: string.replace(/(\\d{3})(\\d{3})(\\d{4})/, '$1-$2-$3')
     
     RESULT: 555-444-3333
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-defineBoxPositionByScreen: <pre>
-  <code>
-    {`
+  defineBoxPositionByScreen: <pre>
+    <code>
+      {`
     FUNCTION:
 
     export const defineBoxPositionByScreen = (ref) => {
@@ -1122,20 +1122,20 @@ defineBoxPositionByScreen: <pre>
       Text
     </div>
     `}
-  </code>
-</pre>,
+    </code>
+  </pre>,
 
-formatPhone: <pre>
-  <code>
-    {`
+  formatPhone: <pre>
+    <code>
+      {`
     //format phone number from '5554443333' to '555 444 3333'
-    export const formatPhone = (value) => value.replace(/(\d{3})\D?(\d{3})\D?(\d{4})/,"$1 $2 $3");
+    export const formatPhone = (value) => value.replace(/(\\d{3})\\D?(\\d{3})\\D?(\\d{4})/,"$1 $2 $3");
     `}
-  </code>
-</pre>,
-copyToClipboard: <pre>
-  <code>
-    {`
+    </code>
+  </pre>,
+  copyToClipboard: <pre>
+    <code>
+      {`
    PROPS: string/number/object
 
    FUNCTION:
@@ -1155,11 +1155,11 @@ copyToClipboard: <pre>
 
   copyToClipboard({ a: 'test', b: 'test 2' })
    `}
-  </code>
-</pre>,
-firstLetterCapital: <pre>
-  <code>
-    {`
+    </code>
+  </pre>,
+  firstLetterCapital: <pre>
+    <code>
+      {`
     //format string from 'test' to 'Test'
 
     FUNCTION:
@@ -1168,6 +1168,6 @@ firstLetterCapital: <pre>
 
 
     `}
-  </code>
-</pre>
+    </code>
+  </pre>
 }
